@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float horizontalInput;
     [SerializeField] private float speed = 10.0f;
     [SerializeField] private float xRange = 10.0f;
+    [SerializeField] private GameObject projectilePrefab;
     private Rigidbody rb; // Used for velocity based movement
     // Start is called before the first frame update
     void Start()
@@ -34,5 +35,16 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
         }
         //----------------------------------------------------------------------------------
+
+        if(Input.GetKeyDown(KeyCode.Space)){
+            Shoot();
+        }
+        
+    }
+
+    /// <summary> -- Fire a projectile -- </summary>
+    void Shoot(){
+        // Launch a projectile from the player's position
+        Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
     }
 }
